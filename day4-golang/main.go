@@ -19,7 +19,7 @@ func partOne() {
 	var counter int
 	for scanner.Scan() {
 		vals := strings.Split(scanner.Text(), ",")
-
+		// 2, 32 1, 55
 		a, _ := strconv.Atoi(strings.Split(vals[0], "-")[0])
 		b, _ := strconv.Atoi(strings.Split(vals[0], "-")[1])
 		c, _ := strconv.Atoi(strings.Split(vals[1], "-")[0])
