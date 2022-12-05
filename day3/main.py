@@ -51,7 +51,7 @@ def part_1():
         "W": 49,
         "X": 50,
         "Y": 51,
-        "Z": 52
+        "Z": 52,
     }
     half = 0
     total = 0
@@ -59,11 +59,11 @@ def part_1():
     with open("input.txt", "r") as file:
         data = file.read()
         lines = data.split("\n")
-    
+
     for line in lines:
-        half = int(len(line)/2)
+        half = int(len(line) / 2)
         first_compartment = line[0:half]
-        second_compartment = line[half:half*2]
+        second_compartment = line[half : half * 2]
         print(first_compartment)
         print(second_compartment)
 
@@ -78,6 +78,7 @@ def part_1():
                 print(item)
                 print(priorities[item])
                 print(total)
+
 
 def part_2():
     priorities = {
@@ -132,7 +133,7 @@ def part_2():
         "W": 49,
         "X": 50,
         "Y": 51,
-        "Z": 52
+        "Z": 52,
     }
     group_size = 3
     count = 0
@@ -142,18 +143,20 @@ def part_2():
         data = file.read()
         lines = data.split("\n")
         number_of_lines = len(lines)
-        number_of_groups = int(number_of_lines/group_size)
-    
+        number_of_groups = int(number_of_lines / group_size)
+
     for group in lines[0:number_of_groups]:
         count = count + group_size
-        nth_group = lines[(count - group_size):count]
-        badge = ''.join(sorted(set.intersection(*map(set,nth_group))))
+        nth_group = lines[(count - group_size) : count]
+        badge = "".join(sorted(set.intersection(*map(set, nth_group))))
         badge_total += priorities[badge]
         print(badge_total)
+
 
 def main():
     part_1()
     part_2()
+
 
 if __name__ == "__main__":
     main()
