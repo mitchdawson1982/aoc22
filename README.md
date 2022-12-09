@@ -65,8 +65,7 @@ Following the Elf's instructions for the second column, __what would your total 
 
 ## Day 8: Treetop Tree House
 
-Assumptions within our code: 
-- input is and `n` x `n` grid
+### Part 1
 
 In this challenge we started with the usual approach of taking our input and splitting it into separate rows, from here we iterate through each element, in each row. Since all exterior trees in the `n` x `n` grid are visible we don't need to perform any calculations on them and we'll revisit this later. 
 
@@ -79,9 +78,13 @@ if number_index == 0 or number_index == last_number_index:
 ...
 ``` 
 
-Following this we iterate through each element in each row and check if it is visible. In order, we examine elements to the [left](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L21), [right](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L26), [above](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L34) and [below](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L42). As demonstrated below for the element in the centre of the grid - `3`, elements which are to be compared are highlighted in bold.
+Following this we iterate through each element, in each row, and check if it is visible compared to the maximum element of all elements in the direction we are comparing.
 
-Left:
+In order, we examine elements to the [left](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L21), [right](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L26), [above](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L34) and [below](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L42). 
+
+As demonstrated below for the element in the centre of the grid - `3`,position [3,3], elements which are to be compared are highlighted in bold.
+
+Left 
 <pre>
 30373
 25512
@@ -90,7 +93,7 @@ Left:
 35390
 </pre>
 
-Right:
+Right
 <pre>
 30373
 25512
@@ -99,7 +102,7 @@ Right:
 35390
 </pre>
 
-Above:
+Above
 <pre>
 30<b>3</b>73
 25<b>5</b>12
@@ -108,7 +111,7 @@ Above:
 35390
 </pre>
 
-Below:
+Below
 <pre>
 30373
 25512
@@ -117,5 +120,12 @@ Below:
 35<b>3</b>90
 </pre>
 
-In each comparison we compare the element in question to the maximum element in whichever direction is being examined. We could compare to each element indicudiau
+In each `if` statement we compare the element in question to _the maximum element_ in whichever direction is being examined.
 
+In the example, above we first compare the element in question `3` to the maximum element of `6` and `5`. Since `3<6` the tree is not visible from this direction, the script breaks, checks if the tree is visible from the right and so on...
+
+When the script detects that the tree is visible it records this in the `trees_visible` variable. 
+
+Finally, for Part 1, we must sum all `trees_visible` and the total number of trees that make up the `perimeter`. There are a few equally valid ways which the latter variable can be [calculated](https://github.com/mitchdawson1982/aoc22/blob/2178441dd9ee8fdae687b192c4aaaa66e3d570db/day8/main.py#L46) for an `n` by `n` grid, we opted for `perimeter = (len(rows[0]) - 1) * 4`.
+
+### Part 2 
